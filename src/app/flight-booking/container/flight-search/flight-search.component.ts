@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Flight } from '../entities/flight';
-import { AbstractFlightService } from './abstract-flight.service';
-import { of } from 'rxjs';
+import { Flight } from '../../../entities/flight';
+import { AbstractFlightService } from '../../services/abstract-flight.service';
 
 @Component({
   selector: 'app-flight-search',
