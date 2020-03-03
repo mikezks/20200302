@@ -1,30 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Flight } from '../entities/flight';
 import { AbstractFlightService } from './abstract-flight.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css']
 })
-export class FlightSearchComponent implements OnInit {
+export class FlightSearchComponent implements OnInit, OnDestroy {
   from = 'Hamburg';
   to = 'Graz';
-  flights: Flight[] = [];
+  get flights() {
+    return this.flightService.flights;
+  }
   selectedFlight: Flight;
+  //person = of({ firstname: 'Peter', lastname: 'Müller '});
 
   constructor(private flightService: AbstractFlightService) { }
 
   ngOnInit(): void {
+    console.log('Component INIT');
+  }
+
+  ngOnDestroy(): void {
+    console.log('Component DESTROY');
   }
 
   search(): void {
     this.flightService
       .find(this.from, this.to)
-      .subscribe(
-        flights => this.flights = flights,
-        err => console.error('Error on loading Flights', err)
-      );
+      .subscribe();
   }
 
   select(flight: Flight): void {

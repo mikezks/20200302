@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Flight } from '../entities/flight';
 import { AbstractFlightService } from './abstract-flight.service';
@@ -7,6 +8,8 @@ import { AbstractFlightService } from './abstract-flight.service';
 @Injectable()
 export class FlightService implements AbstractFlightService {
 
+  flights: Flight[] = [];
+  
   constructor(private http: HttpClient) { }
 
   find(from: string, to: string): Observable<Flight[]> {
@@ -20,6 +23,9 @@ export class FlightService implements AbstractFlightService {
       .set('accept', 'application/json');
 
     return this.http
-      .get<Flight[]>(url, { params, headers });
+      .get<Flight[]>(url, { params, headers })
+      .pipe(
+        tap(flights => this.flights = flights)
+      );
   }
 }

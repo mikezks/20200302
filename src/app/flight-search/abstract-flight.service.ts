@@ -7,10 +7,11 @@ import { DummyFlightService } from './dummy-flight.service';
 
 @Injectable({
   providedIn: 'root',
-  useClass: DummyFlightService,
-  //deps: [HttpClient]
+  useClass: FlightService,
+  deps: [HttpClient]
 })
 export abstract class AbstractFlightService {
+  flights: Flight[];
 
   constructor() { }
 

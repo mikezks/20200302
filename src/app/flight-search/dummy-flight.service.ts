@@ -5,6 +5,7 @@ import { AbstractFlightService } from './abstract-flight.service';
 
 @Injectable()
 export class DummyFlightService implements AbstractFlightService {
+  flights: Flight[] = [];
 
   constructor() { }
 
