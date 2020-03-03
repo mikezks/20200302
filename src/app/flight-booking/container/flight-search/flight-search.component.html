@@ -40,7 +40,12 @@
 
         <app-flight-card
             [item]="flight"
-            [selected]="basket[flight.id]">
+            [selected]="basket[flight.id]"
+            (selectedChange)="basket[flight.id] = $event">
+
+            <span class="bottom">My awesome flight!!!</span>
+            <span class="top">My awesome title!!!</span>
+
         </app-flight-card>
     </div>
 </div>

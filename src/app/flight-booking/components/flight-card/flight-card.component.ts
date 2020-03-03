@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Flight } from 'src/app/entities/flight';
 
 @Component({
@@ -6,20 +6,13 @@ import { Flight } from 'src/app/entities/flight';
   templateUrl: './flight-card.component.html',
   styleUrls: ['./flight-card.component.css']
 })
-export class FlightCardComponent implements OnInit {
+export class FlightCardComponent {
   @Input() item: Flight;
   @Input() selected: boolean;
+  @Output() selectedChange = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  select(): void {
-    this.selected = true;
-  }
-
-  deselect(): void {
-    this.selected = false;
+  toggleSelect(): void {
+    this.selected = !this.selected;
+    this.selectedChange.emit(this.selected);
   }
 }
