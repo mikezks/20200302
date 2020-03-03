@@ -15,6 +15,10 @@ export class FlightSearchComponent implements OnInit, OnDestroy {
   }
   selectedFlight: Flight;
   //person = of({ firstname: 'Peter', lastname: 'Müller '});
+  basket: object = {
+    "3": true,
+    "5": true
+  };
 
   constructor(private flightService: AbstractFlightService) { }
 
