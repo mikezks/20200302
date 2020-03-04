@@ -17,25 +17,26 @@
                     city="Wien,Berlin">
             </div>
             <div
-                class="text text-danger"
+                class="alert alert-danger"
                 *ngIf="searchForm?.controls['from'].invalid">
                 An error occured!
             </div>
             <div
-                class="text text-danger"
+                class="alert alert-danger"
                 *ngIf="searchForm?.controls['from'].hasError('minlength')">
                 Insert at least {{
                     searchForm?.controls['from']?.errors?.minlength?.requiredLength
                 }} chars!
             </div>
             <div
-                class="text text-danger"
+                class="alert alert-danger"
                 *ngIf="searchForm?.controls['from'].hasError('city')">
                 Whitelist not respected. Use one of the following cities: {{
                     searchForm?.controls['from']?.errors?.city?.validCities | json
                 }}
             </div>
-            <pre>{{
+            <pre
+                *ngIf="searchForm?.controls['from']?.errors">{{
                 searchForm?.controls['from']?.errors | json
             }}</pre>
 
