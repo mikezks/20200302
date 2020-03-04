@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity, validateCityWithParams } from '../../../shared/validators/city-validator';
+import { AbstractFlightService } from '../../services/abstract-flight.service';
 
 @Component({
   selector: 'app-flight-edit',
@@ -10,7 +11,9 @@ import { validateCity, validateCityWithParams } from '../../../shared/validators
 export class FlightEditComponent implements OnInit {
   editForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private flightService: AbstractFlightService) { }
 
   ngOnInit(): void {
     this.editForm = this.fb.group({
@@ -37,6 +40,9 @@ export class FlightEditComponent implements OnInit {
       ]
     });
 
+    this.flightService.find('Graz', '')
+      .subscribe();
+    
     this.editForm.valueChanges
       .subscribe(value => console.log('changed form value', value));
   }
@@ -46,5 +52,10 @@ export class FlightEditComponent implements OnInit {
     console.log('valid', this.editForm.valid);
     console.log('dirty', this.editForm.dirty);
     console.log('touched', this.editForm.touched);
+  }
+
+  updateForm(): void {
+    const firstFlight = this.flightService.flights[0];
+    this.editForm.patchValue(firstFlight);
   }
 }
