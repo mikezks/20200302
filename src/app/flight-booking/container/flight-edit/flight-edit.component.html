@@ -15,9 +15,31 @@
         This is a mandatory field.
     </div>
 
+    <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls['from'].hasError('city')">
+        Whitelist not respected. Use one of the following cities: {{
+            editForm.controls['from'].errors.city.validCities | json
+        }}
+    </div>
+
     <div class="form-group">
         <label>To:</label>
         <input formControlName="to" class="form-control">
+    </div>
+
+    <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls['to'].hasError('required')">
+        This is a mandatory field.
+    </div>
+
+    <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls['to'].hasError('city')">
+        Whitelist not respected. Use one of the following cities: {{
+            editForm.controls['to'].errors.city.validCities | json
+        }}
     </div>
 
     <div class="form-group">
