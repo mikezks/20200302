@@ -19,7 +19,8 @@
         
         <button class="btn btn-default" (click)="toggle = !toggle">Toggle View</button>
         <br><br>
-        <app-flight-search *ngIf="toggle"></app-flight-search>
+        <!-- <app-flight-search *ngIf="toggle"></app-flight-search> -->
+        <app-flight-edit *ngIf="toggle"></app-flight-edit>
 
       </div>
   </div>
