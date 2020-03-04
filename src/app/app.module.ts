@@ -14,7 +14,7 @@ import { routes } from './app.routes';
       HttpClientModule,
       RouterModule.forRoot(routes),
       CoreModule,
-      FlightBookingModule
+      //FlightBookingModule
    ],
    declarations: [
       AppComponent      
