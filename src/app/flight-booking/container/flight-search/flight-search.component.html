@@ -18,19 +18,19 @@
             </div>
             <div
                 class="alert alert-danger"
-                *ngIf="searchForm?.controls['from'].invalid">
+                *ngIf="searchForm?.controls['from']?.invalid">
                 An error occured!
             </div>
             <div
                 class="alert alert-danger"
-                *ngIf="searchForm?.controls['from'].hasError('minlength')">
+                *ngIf="searchForm?.controls['from']?.hasError('minlength')">
                 Insert at least {{
                     searchForm?.controls['from']?.errors?.minlength?.requiredLength
                 }} chars!
             </div>
             <div
                 class="alert alert-danger"
-                *ngIf="searchForm?.controls['from'].hasError('city')">
+                *ngIf="searchForm?.controls['from']?.hasError('city')">
                 Whitelist not respected. Use one of the following cities: {{
                     searchForm?.controls['from']?.errors?.city?.validCities | json
                 }}
