@@ -5,14 +5,31 @@
 
     <div class="content">
 
-        <form>
+        <form #searchForm="ngForm">
             <div class="form-group">
                 <label>From:</label>
                 <input
                     name="from"
                     class="form-control"
-                    [(ngModel)]="from">
+                    [(ngModel)]="from"
+                    required
+                    minlength="3">
             </div>
+            <div
+                class="text text-danger"
+                *ngIf="searchForm?.controls['from'].invalid">
+                An error occured!
+            </div>
+            <div
+                class="text text-danger"
+                *ngIf="searchForm?.controls['from'].hasError('minlength')">
+                Insert at least {{
+                    searchForm?.controls['from']?.errors?.minlength?.requiredLength
+                }} chars!
+            </div>
+            <pre>{{
+                searchForm?.controls['from']?.errors | json
+            }}</pre>
 
             <div class="form-group">
                 <label>To:</label>
@@ -43,8 +60,8 @@
             [selected]="basket[flight.id]"
             (selectedChange)="basket[flight.id] = $event">
 
-            <span class="bottom">My awesome flight!!!</span>
-            <span class="top">My awesome title!!!</span>
+            <!-- <span class="bottom">My awesome flight!!!</span>
+            <span class="top">My awesome title!!!</span> -->
 
         </app-flight-card>
     </div>
