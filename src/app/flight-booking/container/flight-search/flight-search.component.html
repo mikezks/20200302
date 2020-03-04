@@ -13,7 +13,8 @@
                     class="form-control"
                     [(ngModel)]="from"
                     required
-                    minlength="3">
+                    minlength="3"
+                    city="Wien,Berlin">
             </div>
             <div
                 class="text text-danger"
@@ -26,6 +27,13 @@
                 Insert at least {{
                     searchForm?.controls['from']?.errors?.minlength?.requiredLength
                 }} chars!
+            </div>
+            <div
+                class="text text-danger"
+                *ngIf="searchForm?.controls['from'].hasError('city')">
+                Whitelist not respected. Use one of the following cities: {{
+                    searchForm?.controls['from']?.errors?.city?.validCities | json
+                }}
             </div>
             <pre>{{
                 searchForm?.controls['from']?.errors | json
