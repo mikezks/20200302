@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity, validateCityWithParams } from '../../../shared/validators/city-validator';
 import { AbstractFlightService } from '../../services/abstract-flight.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-flight-edit',
@@ -13,7 +14,8 @@ export class FlightEditComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private flightService: AbstractFlightService) { }
+    private flightService: AbstractFlightService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.editForm = this.fb.group({
@@ -39,6 +41,11 @@ export class FlightEditComponent implements OnInit {
         new Date().toISOString()
       ]
     });
+
+    this.route.paramMap
+      .subscribe(
+        params => this.editForm.controls.id.setValue(+params.get('id'))
+      );
 
     this.flightService.find('Graz', '')
       .subscribe();

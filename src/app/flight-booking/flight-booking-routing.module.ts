@@ -13,9 +13,13 @@ const routes: Routes = [
         component: FlightSearchComponent
       },
       {
-          path: 'flight-edit',
-          component: FlightEditComponent
+        path: 'flight-edit',
+        component: FlightEditComponent
       },
+      {
+          path: 'flight-edit/:id',
+          component: FlightEditComponent
+      }
     ]
   }
 ];
